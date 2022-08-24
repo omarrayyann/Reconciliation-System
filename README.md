@@ -1,5 +1,5 @@
 # Reconciliation system
-A console application that handle system files as a communication channel, and both CSV and JSON file formats. The application reads two files, compares the records of these files and produce result files showing the matched, mismatched and missing records.
+A console application that handle system files as a communication channel. The application reads two files (CSV and JSON file formats), compares the records of these files and produce result files showing the matched, mismatched and missing records.
 
 ## File formats
 
