@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Login</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+</head>
+<body>
+
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle" uk-height-viewport>
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-1-1@m">
+          <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large" style="border-radius: 15px">
+            <h3 class="uk-card-title uk-text-center" style="font-weight: 400; padding: 10px">Source Upload</h3>
+            <form action="/uploading-source-files" method="GET">
+              <div class="uk-margin">
+                <div class="uk-inline uk-width-1-1">
+                  <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+                  <input  style="border-radius: 10px"  name="source_name" placeholder="Source Name" class="uk-input uk-form-large" type="text">
+                </div>
+              </div>
+              <div class="uk-margin">
+                <div class="uk-inline uk-width-1-1">
+                  <div class="uk-margin">
+                    <select name="format"  style="border-radius: 10px; height: 55px" ; class="uk-select">
+                      <option>CSV</option>
+                      <option>JSON</option>
+                    </select>
+                  </div></div>
+                <div style="width:72%" class="uk-inline uk-width-1-1">
+                  <input id="fileupload" type="file" name="fileupload" />
+                  <button type="button" id="upload-button" onclick="uploadFile()"> Upload </button>
+                </div>
+              </div>
+              <div class="uk-margin">
+                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" style="border-radius: 10px">Next</button>
+              </div>
+              <p style="color: darkred; text-align: center; margin-bottom: -10px">Login Failed, Wrong Details</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+
+
+ <script>
+  async function uploadFile() {
+    let formData = new FormData();
+    formData.append("file", fileupload.files[0]);
+    let response = await fetch('/upload', {
+      method: "POST",
+      body: formData
+    });
+
+    if (response.status == 200) {
+      alert("File successfully uploaded.");
+    }
+  }
+</script>
+
+
+</body>
+</html>
